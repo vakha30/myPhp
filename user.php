@@ -6,10 +6,6 @@ $user = new Auth(new QueryBuilder);
 
 $user_check = $user->check();
 $user_info = $user->currentUser();
-// var_dump($user_check);
-$db = new QueryBuilder();
-$posts = $db->getAll("posts");
-$user->remove(5);
 ?>
 
 <!DOCTYPE html>
@@ -53,30 +49,9 @@ $user->remove(5);
                     </div>
                 </div>
                 <hr>
-                <a href="addpost.php" class="btn btn-success mb-2">Добавить</a>
-
-                <table class="table table-light">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Заголовок</th>
-                            <th>Действие</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach($posts as $post): ?>
-                            <tr>
-                                <td><?= $post['id'] ?></td>
-                                <td><?= $post['title'] ?></td>
-                                <td>
-                                    <a href="showpost.php?id=<?= $post['id'] ?>" class="btn btn-info">Показать</a>
-                                    <a href="editpost.php?id=<?= $post['id'] ?>" class="btn btn-warning">Изменить</a>
-                                    <a href="deletepost.php?id=<?= $post['id'] ?>" class="btn btn-danger">Удалить</a>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
+                <h2><?= $user_info['login'] ?></h2>
+                <img src="uploads/<?= $user_info['avatar'] ?>" alt="" width=300>
+                <a href="addavatar.php?id=<?= $user_info['id'] ?>">Добавить аватар</a>
             </div>
         </div>
     </div>
